@@ -1,0 +1,27 @@
+Window functions in SQL allow you to perform calculations across rows that are related to the current row, without collapsing rows into a single result (unlike aggregate functions). They are powerful tools especially used in analytics, reporting, and ranking.
+
+Row Number() - Assigns a unique sequential number to rows
+Rank() - Rank Rows with ties 
+Dense Rank() -Assigns Ranks with out ties.
+Lag() - get the Previos row value.
+Lead() - Get the next row value.
+
+
+
+create table laptop(s_no int, first_name char(40),last_name char(40),Laptop_name char(40),price int);
+insert into laptop values(1,'yaswanth','Yepuri','HP',90000);
+insert into laptop values(2,'Nitesh','Koduru','Axis',80000);
+insert into laptop values(3,'Sandeep','koduru','Lenovo',70000);
+insert into laptop values(4,'Ajay','Boyapati','Lenovo',60000);
+insert into laptop values(5,'charan','G','MAC',100000);
+select S_no,first_name,last_name,price,Laptop_name,
+row_number() over(partition by last_name order by price desc) as highest_price from laptop;
+
+select s_no,first_name,last_name,price,Laptop_name,
+rank() over(partition by laptop_name order by s_no) as laptops from laptop;
+
+select s_no,first_name,price,laptop_name,
+LAG(price) over(partition by laptop_name order by price) as first_price from laptop;
+
+select s_no,first_name,price,laptop_name,
+LEAD(price) over(partition by laptop_name order by price) as next_price from laptop;
