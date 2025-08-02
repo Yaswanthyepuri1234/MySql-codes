@@ -1,0 +1,40 @@
+1.create table author(S_no int, first_name char(40),last_name varchar(40),street char(40));
+insert into author values(1,'yaswanth','yepuri','xyz');
+insert into author values(2,'Niteesh','Koduru','Abc');
+insert into author values(3,'Sandeep','Koduru','pqrs');
+describe author;
+create view Name_author as select * from author where last_name='Koduru';
+select * from Name_author;
+
+2.create table laptop(s_no int, company_name char(40),first_name char(40),Last_name varchar(40),price int);
+describe laptop;
+insert into laptop values(1,'HP','Ajay','Boyapati',30000);
+insert into laptop values(2,'Axis','charan','G',90000);
+insert into laptop values(3,'Lenovo','vardhan','Sai',100000);
+select * from laptop;
+create view laptop_price as select * from laptop where price>=50000;
+select * from laptop_price;
+
+3.create table marks(S_no int,first_name char(40),subject char(30),marks int);
+describe marks;
+insert into marks values(1,'yaswanth','maths',90);
+insert into marks values(2,'ajay','social',80);
+insert into marks values(3,'nitesh','telugu',75);
+
+create view view_name as select * from marks where subject='telugu' ;
+select * from view_name;
+
+create view first_view as select * from marks where subject='social' or marks<90;
+select * from first_view;
+
+create view second_view as select * from marks where subject='social' and marks<90;
+select * from second_view;
+
+4.create table bottle(Lead_id int,first_name char(40),last_name char(40),price int);
+insert into bottle values(123,'ravi','xyz',890);
+insert into bottle values(143,'prasad','pqrs',900);
+insert into bottle values(156,'arjun','def',800);
+select * from bottle;
+
+create view bottle_view as select Lead_id,first_name,avg(price) as bottle_price from bottle group by lead_id,first_name;
+select * from bottle_view;
