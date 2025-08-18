@@ -1,0 +1,23 @@
+A CTE (Common Table Expression) is a temporary result set in SQL that you can reference within a SELECT, INSERT, UPDATE, or DELETE statement. 
+It's useful for improving query readability and breaking down complex queries.
+
+
+
+create table student(s_no int,first_name char(40),last_name char(40),subject char(40),marks int);
+insert into student values(1,'yaswanth','yepuri','Chemistry',90);
+insert into student values(2,'ajay','Boyapati','telugu',85);
+insert into student values(3,'Nitesh','Koduru','social',70);
+insert into student values(4,'sandeep','koduru','telugu',89);
+insert into student values(5,'charan','g','chemistry',88);
+insert into student values(6,'kanna','y','social',89);
+select first_name,subject,marks from student where marks<98;
+select subject , Avg(marks) as average_marks from student group by subject having subject='telugu';
+
+with top_student as (select first_name,marks from student where marks>85)
+select * from top_student;
+
+with top_name as (select last_name,marks from student where last_name='yepuri')
+select * from top_name;
+
+with top_subject as (select subject,marks from student where subject='social')
+select * from top_subject;
